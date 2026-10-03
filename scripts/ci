@@ -1,0 +1,14 @@
+#!/bin/sh
+set -eu
+cd "$(dirname "$0")/.."
+
+# Until the prototype is scaffolded there is nothing to build.
+if [ ! -f package.json ]; then
+  echo "No package.json yet; nothing to check."
+  exit 0
+fi
+
+npm ci --ignore-scripts --no-audit --no-fund --prefer-offline
+npm run format:check
+npm run lint
+npm run build
