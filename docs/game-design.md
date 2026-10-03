@@ -2,10 +2,11 @@
 
 Bridge of Rogues is a roguelike built on contract bridge. Four seats play eight
 deals of duplicate-scored bridge with Standard American Yellow Card (SAYC)
-bidding. Before each deal, every player shops for **sigils** (up to five
+bidding. Before each deal, players shop for **sigils** (up to five
 scoring and rule-changing pieces), **engravings** (permanent changes to cards
-they own), and **cards** (which are dealt to their owner every deal). The
-partnership with the higher score after deal 8 wins.
+they own), and **cards** (which are dealt to their owner every deal). In
+single-player you are the only buyer on your side, with double gold and sigil
+slots. The partnership with the higher score after deal 8 wins.
 
 This document records the design agreed in the design interview of
 2026-10-03; [Appendix A](#appendix-a-decision-log) lists each decision. The
@@ -23,12 +24,12 @@ carries over.
 | Bridge | Duplicate scoring; vulnerability follows boards 1–8; SAYC bidding |
 | Scoring | Trick values sum, the six lowest are book, bonuses add, contract multipliers sum, doubling multiplies the result |
 | Failure | Undertricks scale with the declaring side's contract multiplier |
-| Sigils | 5 slots per player; both partners' sigils apply to their side's contracts; all sigils are public |
+| Sigils | 5 slots per shopping player, 10 for you in single-player; both partners' sigils apply to their side's contracts; all sigils are public |
 | Engravings | Seven types, applied immediately to an owned card, one per card |
 | Cards | Bought cards are dealt to their owner every deal; owned cards are private |
 | Shop | 2 sigils, 2 engravings, 2 cards; unlimited purchases; Balatro-style random offers |
 | Archetypes | Five strains (♣ ♦ ♥ ♠ NT) and four minors (Aces, Doubles, Exact, Fit) |
-| Prototype | Single-player: you sit South with an AI partner against two AI opponents |
+| Prototype | Single-player: you sit South with a non-shopping AI partner against two shopping AI opponents |
 
 ## Design pillars
 
@@ -42,7 +43,9 @@ carries over.
    in its strain every time, but each one gets there through a different bridge
    technique, the way a Flush build in Balatro plays differently from High Card.
 4. **Symmetric seats.** Human and AI seats follow identical rules, so one
-   design serves single-player and multiplayer.
+   design serves single-player and multiplayer. The one exception is an AI
+   partner of a human, which never shops; its human partner gets double gold
+   and limits instead ([§8](#ai-partners-do-not-shop)).
 
 ## 1. The table, the run, and victory
 
@@ -55,12 +58,14 @@ carries over.
 - Gold, sigils, cards, and engravings belong to individual players.
 - After deal 8, the side with the higher total wins. Equal totals are a draw.
 - In single-player you sit South, partnered with an AI North, against AI East
-  and West. Multiplayer is covered in [§13](#13-multiplayer).
+  and West. North never shops, so you are your side's only buyer. Multiplayer
+  is covered in [§13](#13-multiplayer).
 
 ## 2. The lifecycle of a round
 
-1. **Shop.** Every player shops at once ([§8](#8-shops-and-economy)). The
-   first shop opens before deal 1 with each player's starting 100 gold.
+1. **Shop.** Every shopping player shops at once
+   ([§8](#8-shops-and-economy)). The first shop opens before deal 1 with each
+   player's starting gold.
 2. **Deal.** Hands are built from owned cards and the shuffled remainder
    ([§7](#7-cards)).
 3. **Auction.** The dealer calls first and calls proceed clockwise. If all four
@@ -69,7 +74,8 @@ carries over.
 4. **Play.** Declarer's left-hand opponent leads, dummy is exposed, and
    declarer plays both hands for 13 tricks.
 5. **Score.** One side scores the deal ([§4](#4-scoring)).
-6. **Income.** Each player collects interest, then base and trick income.
+6. **Income.** Each shopping player collects interest, then base and trick
+   income.
 7. **Next round.** After deal 8 the run ends without a shop.
 
 The eight deals use duplicate boards 1–8, so each side is vulnerable on four
@@ -266,8 +272,9 @@ side real counterplay.
 
 ### Slots and ownership
 
-- Each player holds up to **5 sigils**. Buying one needs a free slot, so a
-  player with five must sell one first. Utility sigils can add slots.
+- Each player holds up to **5 sigils**, or **10** for a human with an AI
+  partner ([§8](#ai-partners-do-not-shop)). Buying one needs a free slot, so a
+  player with a full row must sell one first. Utility sigils can add slots.
 - A player is never offered a sigil they already own.
 - A sigil sells for half its price, rounded down to a multiple of 5.
 - Sigils never have activated abilities. Selling a sigil may trigger it, as
@@ -276,7 +283,8 @@ side real counterplay.
 ### Scope: "you" means your side
 
 - Both partners' sigils apply to any contract their side declares, whichever
-  partner is declarer. Up to 10 sigils feed one contract.
+  partner is declarer. Up to 10 sigils feed one contract, whether from two
+  partners or from one human with an AI partner.
 - "You" and "your" in sigil text mean your partnership. Tricks won with dummy's
   cards count as your tricks.
 - "Your hearts contracts" means contracts your side declares in hearts.
@@ -418,6 +426,25 @@ an opponent your engraved ace for a deal.
 - A typical round earns about 195 gold, or about 1,450 spendable over the run.
   Score leads do not turn into gold leads; earning more is the job of economy
   sigils, Gold engravings, and the [Diamonds](#-diamonds-treasury) archetype.
+
+### AI partners do not shop
+
+A human with an AI partner is their side's only buyer. In single-player that
+is you, and North never shops.
+
+- The AI partner has no gold, sigils, cards, or engravings. It is dealt 13
+  cards from the shuffled remainder every deal.
+- The human gets the whole side's economy: **200 starting gold**, **200 base
+  income plus 20 per trick** their side won, and interest of 10 per 50 gold held
+  up to **100**. That is about 390 gold a round, or about 2,900 over the run.
+- The human holds up to **10 sigils**, so the side keeps its 10-sigil ceiling.
+- Shop offers, prices, and reroll costs are unchanged. The extra gold mostly
+  buys more rerolls, so the human sees about as many offers as two partners
+  would.
+- Cards and engravings still go to the human's own hand. Owning more than 13
+  cards becomes more common, with the usual cost ([§7](#dealing)).
+- Gold effects already count the whole side ("you" means your side), so they
+  are not doubled.
 
 ## 9. Archetypes
 
@@ -631,9 +658,9 @@ Examples:
 ### Fit
 
 **Plan.** Fit payoffs scale with the trumps your side holds between both hands
-and with tricks won by dummy, so both partners pile into one suit. Your AI
-partner follows your lead ([§12](#12-ai)), which makes this workable in
-single-player.
+and with tricks won by dummy, so both partners pile into one suit. In
+single-player North owns nothing, so you build the fit alone: own a long trump
+suit and rely on North's random share for the rest.
 
 Examples:
 
@@ -659,8 +686,8 @@ together.
 Utility examples:
 
 - **Economy and shop:** the first reroll in each shop is free; your shops offer a
-  third sigil; sigils cost you 10 less; your interest cap is 80; this sigil's
-  sell value rises by 10 after each deal.
+  third sigil; sigils cost you 10 less; your interest cap rises by 30; this
+  sigil's sell value rises by 10 after each deal.
 - **Deal and card control:** when you own more than 13 cards, choose which 13 are
   dealt to you; cards cost you 5 less; one of your cards may hold a second
   engraving; your shops offer a third card.
@@ -750,9 +777,11 @@ Checks against par:
 With one reroll per shop, a player sees about 30 sigil offers per run: about 21
 commons, 7.5 uncommons, 1.5 rares, and one legendary every three or four runs.
 Each player therefore sees about 3 sigils aimed at any given strain per run.
-Because your partner follows your lead, the partnership sees about 6, plus
-about 3 generic point sigils each. That is enough for Balatro-style pivoting,
-but it is a risk to watch ([§14](#14-risks-and-tuning-levers)).
+An opposing pair shares a strain, so it sees about 6, plus about 3 generic
+point sigils each. In single-player your double gold buys about three rerolls
+per shop, so you alone see about 60 offers and a similar count. That is enough
+for Balatro-style pivoting, but it is a risk to watch
+([§14](#14-risks-and-tuning-levers)).
 
 ## 11. Bidding UI and learning aids
 
@@ -806,7 +835,8 @@ seat would see. They never see another player's owned cards.
 - Every AI call means what its SAYC label says, so the hover cards and seat
   summaries stay trustworthy.
 - Within those meanings, the AI uses sigil-aware judgment. It values its hand
-  with effective cards, prefers its build's strain when SAYC offers a choice,
+  with effective cards, prefers its side's build strain when SAYC offers a
+  choice,
   pushes toward game and slam when its side's multipliers pay, and decides
   doubles and sacrifices by expected score.
 
@@ -821,20 +851,21 @@ seat would see. They never see another player's owned cards.
 
 ### Shopping
 
-- **Your partner follows your lead.** It reads your public sigils and leans into
-  your strain: cards in your suit, which build trump fits; Fit and generic
-  point sigils; and multipliers that complement yours.
+- **Your partner never shops** ([§8](#ai-partners-do-not-shop)). It still bids
+  and plays toward your build, which it reads from your public sigils.
 - **Each opposing pair settles on one strain** from its early offers and builds
   it together.
-- AI seats buy, reroll, and sell under the same rules and prices as you.
+- Opposing AI seats buy, reroll, and sell under the same rules and prices as a
+  human with a human partner.
 
 ## 13. Multiplayer
 
-The first prototype is single-player only. Because every rule is symmetric,
-multiplayer needs only these additions:
+The first prototype is single-player only. Because every rule is symmetric
+apart from AI partners, multiplayer needs only these additions:
 
 - **Two humans** play as partners against two AI seats. **Four humans** play
-  two against two.
+  two against two. Human partners each shop with the normal economy and 5
+  slots; only a human with an AI partner gets the doubled economy.
 - With a human partner, the nominal declarer plays the hand and the human dummy
   watches.
 - Shops run simultaneously. Card offers never overlap, so purchases never
@@ -848,7 +879,9 @@ multiplayer needs only these additions:
 | AI sacrifices against every big contract, so builds rarely play their slams | Penalty scaling, and the AI's sacrifice threshold |
 | Strain builds rarely come together with random offers | More strain commons, a third sigil offer, cheaper rerolls; affinity weighting held in reserve |
 | ×2 and ×4 doubling swings decide too many games | Doubling as +1× and +3× instead |
-| Fit depends on the partner AI's choices | Partner heuristics; Fit counts the whole side's cards |
+| Fit is weak in single-player because North's hand is random | Fit counts the whole side's cards; let you assign bought cards to North |
+| Double gold inflates gold-scaling sigils, such as Treasury's "per 2 gold held" | Halve gold scaling for a doubled-economy seat, or raise Treasury thresholds |
+| One buyer with 10 slots outbuilds two shopping opponents, or falls behind them | Income and slot count for the doubled-economy seat |
 | Convert is 4 of 10 engraving offer types, 40% of engraving offers | Offer weights |
 | Treasury's spend-or-bank tension is too weak or too harsh | Gold thresholds on Treasury sigils, interest cap |
 | Full SAYC bidding plus competent card play is the largest implementation cost | Start with SAYC core bidding and sampling-based play, then widen |
@@ -881,10 +914,11 @@ multiplayer needs only these additions:
 | 22 | Convention coverage | The full SAYC booklet, labeled by meaning |
 | 23 | Bidding suggestion | A subtle marker in the suggested call's hover card |
 | 24 | AI bidding | SAYC meanings with sigil-aware judgment |
-| 25 | AI shopping | Your partner follows your lead; opposing pairs share a strain |
+| 25 | AI shopping | Your AI partner never shops; opposing pairs share a strain |
 | 26 | Multiplayer | Specified here; the first prototype is single-player |
 | 27 | GDD scope | Systems, skeleton, and examples; the full sigil list comes later |
 | 28 | Location | This file |
+| 29 | Single-player buying | You are your side's only buyer, with double gold, income, interest cap, and sigil slots; opponents still shop |
 
 ## Appendix B: Calls made without a dedicated question
 
