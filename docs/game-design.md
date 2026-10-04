@@ -540,8 +540,8 @@ Rules for the pool:
   each major has at least three.
 - An enabler must read clearly on its own: a player who buys it should see what
   it makes happen.
-- Enablers that change how cards play bend real bridge, so they sit at uncommon or above
-  and change one thing at a time.
+- Enablers that change how cards play bend real bridge, so they sit at
+  uncommon or above and change one thing at a time.
 - Validation tests each payoff with its enablers available, and each enabler by
   how much it raises its payoffs' trigger rates
   ([§15](#15-sigil-validation)).
