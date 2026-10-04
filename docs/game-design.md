@@ -38,7 +38,8 @@ carries over.
 2. **Direct scoring.** Rogue Spades had many sigils that were fun alone but
    added up to no game plan. Here most sigils say "you get points for doing X"
    in one of four categories, Balatro-style, and builds come from stacking
-   them.
+   them. Every payoff comes with **enablers**, sigils that make its condition
+   happen more often ([§9](#payoffs-and-enablers)).
 3. **Every plan works in every strain.** Cycles of identical sigils make the
    beginner plan, collecting one suit or its top honors and bidding it, equally
    viable in all five strains. Strains differ through bridge itself, and
@@ -317,20 +318,23 @@ side real counterplay.
 | Trick multiplier | +Mult on specific cards | "Tricks you win with an ace have +2× trick multiplier." |
 | Contract multiplier | ×Mult | "Your hearts contracts have +2× contract multiplier." |
 | Utility | Economy and rule jokers | "The first reroll in each shop is free." |
+| Enabler (a kind of utility) | Four Fingers, Smeared Joker | "Once per deal, you may trump a trick even when you could follow suit." |
 
-Utility comes in three families. Information effects, such as peeking at
-another hand, are excluded because they undercut the bidding inference that
-teaches bridge.
+The four point categories are **payoffs**. Utility comes in three families.
+Information effects, such as peeking at another hand, are excluded because
+they undercut the bidding inference that teaches bridge.
 
 - **Economy and shop:** bonus gold, a higher interest cap, sell value that
   grows, cheaper or free rerolls, discounts, extra offers, and better rarity
   odds.
-- **Deal and card control:** choosing which owned cards are dealt when you own
-  more than 13, guaranteeing a kind of card, cheaper cards, better card offers,
-  and engraving tools.
-- **Rule benders:** analogs of Balatro's Smeared Joker and Pareidolia, such as
-  "hearts and diamonds count as one suit for your sigils", "your kings count as
-  aces for your sigils", "your side's book is five tricks", and +1 sigil slot.
+- **Enablers:** deal, card, shop, and rule effects aimed at one archetype, which
+  make its payoffs trigger more often ([§9](#payoffs-and-enablers)), such as
+  "Convert engravings you buy convert two cards" or "your singletons count as
+  voids for your sigils".
+- **General rule benders and deal control:** effects useful to any build, such
+  as choosing which owned cards are dealt when you own more than 13, "hearts
+  and diamonds count as one suit for your sigils", "your side's book is five
+  tricks", and +1 sigil slot.
 
 ### Rarity and price
 
@@ -512,6 +516,38 @@ pay for how you play it.
   a per-trick Lead sigil needs the lead to hold. A flat Lead sigil pays either
   way.
 
+### Payoffs and enablers
+
+Point sigils are **payoffs**: they score when something happens. A payoff is
+only worth building around if you can make that thing happen more often, and
+that is the job of **enablers**. "Tricks you win by trumping have +2× trick
+multiplier" needs trumps and voids; "once per deal, you may trump a trick even
+when you could follow suit" supplies them.
+
+Enablers come from three places:
+
+- **Cards:** buying the suit, rank, or length a payoff counts. Each archetype's
+  Buys line is part of its enabler list.
+- **Engravings:** Convert makes length and voids, Raise makes aces, and Wild
+  makes stoppers and rainbows.
+- **Enabler sigils:** utility sigils aimed at one archetype that bend the deal,
+  the shop, or the rules toward it, the way Balatro's Four Fingers makes Flush
+  builds work.
+
+Rules for the pool:
+
+- Every archetype has at least one common and one uncommon enabler sigil, and
+  each major has at least three.
+- An enabler must read clearly on its own: a player who buys it should see what
+  it makes happen.
+- Enablers that change how cards play bend real bridge, so they sit at uncommon or above
+  and change one thing at a time.
+- Validation tests each payoff with its enablers available, and each enabler by
+  how much it raises its payoffs' trigger rates
+  ([§15](#15-sigil-validation)).
+
+Each archetype below lists its enablers before its payoffs.
+
 ### Cycles
 
 A **cycle** is a set of sigils that are identical apart from one symbol, a
@@ -553,6 +589,14 @@ some cross-strain archetypes a natural fit:
 | ♠ | Outbids every strain at its level. Convert short suits into spades and crossruff. | Trumps, Voids |
 | NT | Game in nine tricks, but every suit needs a stopper. Trumps sigils score nothing here. | Rainbow, Ranks |
 
+**Enablers** (the payoffs are the [cycles](#cycles)):
+
+- [C, Enabler] One card offer in each of your shops is from the suit you own
+  the most cards of.
+- [U, Enabler] Convert engravings you buy convert two cards.
+- [U, Enabler] Your partner is dealt at least three cards of the suit you own
+  the most cards of.
+
 - **Buys:** the strain's suit, or aces and kings in every suit for NT.
 - **Engraves:** Convert into the suit; Raise toward its top honors; Wild for an
   NT stopper.
@@ -566,6 +610,17 @@ some cross-strain archetypes a natural fit:
 **Plan.** Own the trumps in whatever suit you declare. Trumps pays two ways:
 drawing trumps by leading them, and ruffing side-suit losers. Most hands suit
 one line or the other, so a Trumps build leans one way.
+
+**Enablers:**
+
+- [C, Enabler] Each of your shops offers a Convert engraving into the suit you
+  own the most cards of.
+- [U, Enabler] Once per deal, you may trump a trick even when you could follow
+  suit.
+- [R, Enabler] Opponents can't lead trumps against your contracts unless they
+  hold nothing else.
+
+**Payoffs:**
 
 | Trigger | Example |
 | --- | --- |
@@ -592,6 +647,15 @@ the remaining tricks with small cards. Your **longest suit** is the suit in
 which declarer and dummy together hold the most cards as dealt, and ties count
 every tied suit. It can be trumps or, in NT, a side suit you run.
 
+**Enablers:**
+
+- [C, Enabler] Cards of the suit you own the most of cost you 5 less.
+- [U, Enabler] When you own more than 13 cards, cards of the suit you own the
+  most of are dealt to you first.
+- [R, Enabler] Opponents can't trump your longest suit.
+
+**Payoffs:**
+
 | Trigger | Example |
 | --- | --- |
 | Hold | [C, Flat] Your contracts are worth +100 if declarer or dummy holds seven or more cards in one suit. |
@@ -616,6 +680,14 @@ every tied suit. It can be trumps or, in NT, a side suit you run.
 
 **Plan.** Bid six or seven whenever it is close. Slams pays for bidding slams
 as well as making them, so its risk lives in the auction.
+
+**Enablers:**
+
+- [C, Enabler] The first undertrick of your slams costs nothing.
+- [U, Enabler] Opponents can't bid over your side's slam bids.
+- [R, Enabler] Your small slams need only 11 tricks.
+
+**Payoffs:**
 
 | Trigger | Example |
 | --- | --- |
@@ -642,6 +714,14 @@ as well as making them, so its risk lives in the auction.
 aces, which win in every strain and cost the most; a few pay for cheaper kings,
 queens, and jacks.
 
+**Enablers:**
+
+- [C, Enabler] Aces cost you 25 less.
+- [U, Enabler] Your kings count as aces for your sigils.
+- [L, Enabler] Your aces can't be trumped.
+
+**Payoffs:**
+
 | Trigger | Example |
 | --- | --- |
 | Win | [C, Per-trick] Tricks you win with an ace are worth +20. |
@@ -650,7 +730,6 @@ queens, and jacks.
 | Hold | [C, Flat] Your contracts are worth +15 for each queen and jack your side holds. |
 | Lead | [U, Trick ×] Tricks you lead an ace to have +2× trick multiplier. |
 | Hold | [U, Contract ×] +1× contract multiplier if your side holds four or more aces. |
-| Hold | [U, Utility] Your kings count as aces for your sigils. |
 | Win | [R, Contract ×] +1× contract multiplier for each trick you win with an ace beyond two. |
 | Hold | [R, Contract ×] +1× contract multiplier for each rank of which your side holds all four cards. |
 
@@ -668,6 +747,14 @@ queens, and jacks.
 **Plan.** Win tricks with 2s through 10s, the cheapest cards in the shop. Low
 cards win through length, by trumping, and after the honors are gone. Raise
 cuts both ways: a raised 10 is a jack.
+
+**Enablers:**
+
+- [C, Enabler] Your jacks count as low cards for your sigils.
+- [U, Enabler] Once per deal, a 10 or lower that you play wins as if it were an
+  ace, and still counts as a low card for your sigils.
+
+**Payoffs:**
 
 - [C, Per-trick] Win: tricks you win with a 10 or lower are worth +15.
 - [C, Flat] Hold: your contracts are worth +100 if your side holds 20 or fewer
@@ -689,6 +776,14 @@ engravings create voids, and wild cards never break one
 ([§3](#wild-cards)). Voids sigils score in NT, but a void there is a
 liability.
 
+**Enablers:**
+
+- [C, Enabler] Your singletons count as voids for your sigils.
+- [U, Enabler] After dummy is exposed, you may swap one card between
+  declarer's hand and dummy.
+
+**Payoffs:**
+
 - [C, Flat] Hold: your contracts are worth +75 for each void in declarer's or
   dummy's hand as dealt.
 - [C, Contract ×] Early: +1× contract multiplier if declarer or dummy becomes
@@ -709,6 +804,14 @@ suit contract it means cashing side-suit winners as well as trumps. A trick
 won with a wild card counts as every suit ([§3](#wild-cards)), so one wild
 completes the rainbow and Wild is the build's key engraving.
 
+**Enablers:**
+
+- [C, Enabler] Wild engravings cost you 30 less.
+- [U, Enabler] Tricks you win by trumping count as the suit led for your
+  sigils.
+
+**Payoffs:**
+
 - [C, Contract ×] Win: +1× contract multiplier if your side wins tricks with
   cards of all four suits.
 - [C, Per-trick] Win: the first trick you win with each suit is worth +30.
@@ -728,6 +831,14 @@ puzzle: take your losses at the right moment, then keep the lead. Early and
 late sigils pull opposite ways, since one wants winners cashed at once and the
 other wants losers given up first. The defenders lead to trick 1, so winning
 early means winning the opening lead.
+
+**Enablers:**
+
+- [C, Enabler] The first trick your side loses each deal doesn't break a run
+  for your sigils.
+- [U, Enabler] In your contracts, declarer makes the opening lead.
+
+**Payoffs:**
 
 - [C, Per-trick] Sequence: each trick your side wins is worth +10 for each
   trick it won in a row before it.
@@ -753,18 +864,23 @@ Generic point sigils fit any build and carry runs while a plan comes together.
 - [U, Contract ×] Your vulnerable contracts have +1× contract multiplier.
 - [L, Contract ×] Double your side's contract multiplier.
 - [L, Utility] +1 sigil slot.
-- [L, Utility] Your side's book is five tricks.
+- [R, Utility] Your side's book is five tricks.
+
+Generic enablers steer offers toward whatever you are already building:
+
+- [U, Enabler] Your sigil offers favor archetypes of the sigils you hold.
+- [U, Enabler] Your shops offer a third card, drawn from cards your sigils
+  reward.
 
 Utility examples:
 
 - **Economy and shop:** the first reroll in each shop is free; your shops offer a
   third sigil; sigils cost you 10 less; your interest cap rises by 30; this
   sigil's sell value rises by 10 after each deal.
-- **Deal and card control:** when you own more than 13 cards, choose which 13 are
-  dealt to you; cards cost you 5 less; one of your cards may hold a second
-  engraving; your shops offer a third card.
-- **Rule benders:** hearts and diamonds count as one suit for your sigils; your
-  jacks count as low cards; penalties against your side are halved.
+- **General rule benders and deal control:** when you own more than 13 cards,
+  choose which 13 are dealt to you; cards cost you 5 less; one of your cards
+  may hold a second engraving; hearts and diamonds count as one suit for your
+  sigils; penalties against your side are halved.
 
 ## 10. Sigil pool skeleton
 
@@ -812,14 +928,14 @@ uncommon) and NT has two. Cycles are 18 of the 90 point sigils.
 
 | Family | Common | Uncommon | Rare | Legendary | Total |
 | --- | --- | --- | --- | --- | --- |
-| Economy and shop | 8 | 10 | 1 | — | 19 |
-| Deal and card control | 6 | 10 | 2 | — | 18 |
-| Rule benders | 4 | 10 | 2 | 2 | 18 |
+| Economy and shop | 6 | 9 | 1 | — | 16 |
+| Enablers | 9 | 12 | 3 | 1 | 25 |
+| General rule benders and deal control | 3 | 9 | 1 | 1 | 14 |
 | **Total** | **18** | **30** | **5** | **2** | **55** |
 
-About 8 utility sigils are aimed at an archetype, roughly one per
-cross-strain archetype, such as Ranks' kings-as-aces or Slams' gold for
-bidding a slam. The rest are generic.
+Enablers are 25 of the 55 utility sigils: three for the strains together, three
+for each cross-strain major, two for each minor, and two generic ones that
+steer offers. That is about one enabler for every three or four payoffs.
 
 ### Budgets
 
@@ -955,6 +1071,7 @@ apart from AI partners, multiplayer needs only these additions:
 | ×2 and ×4 doubling swings decide too many games | Doubling as +1× and +3× instead |
 | Identical cycles leave minor strains behind, since their tricks score 20 and game needs 11 tricks | A minor-only +5 per trick in the Strain tricks cycle |
 | About one strain sigil per run is too thin for a pure strain build | A fifth cycle, a third sigil offer, cheaper rerolls |
+| Rule-changing enablers blur the real-bridge pillar | Keep them at uncommon and above, one rule change each, and explain them in the play UI |
 | One wild card completes Rainbow | Wild counts as one named suit for Rainbow |
 | Your 7 slots fall behind the 10 held by the two shopping AI opponents | Slot count for the doubled-economy seat; opposing AI slot caps as a difficulty setting |
 | Convert is 4 of 10 engraving offer types, 40% of engraving offers | Offer weights |
@@ -967,10 +1084,10 @@ intuition alone: each needs empirical evidence from simulated runs.
 
 ### The bar
 
-A point sigil ships only if simulation shows that a player who picks it can:
+A payoff sigil ships only if simulation shows that a player who picks it can:
 
-1. **Build around it.** Assemble the cards, engravings, and supporting sigils
-   it needs from normal shop offers, reliably rather than on lucky runs.
+1. **Build around it.** Assemble the cards, engravings, and enablers it needs
+   from normal shop offers, reliably rather than on lucky runs.
 2. **Trigger it.** Score with it on a steady share of the deals their side
    declares.
 3. **Win with it.** Win the run with some real probability, with the sigil
@@ -988,7 +1105,8 @@ chance that you win because of it.
 - **Forced-pick trials.** A candidate is forced into one side's sigils at a
   fixed shop, such as before deal 1, 3, or 5, and that side builds around it.
   A control arm forces a plain baseline of the same rarity instead, such as
-  "Tricks in your contracts are worth +5", on the same seeds.
+  "Tricks in your contracts are worth +5", on the same seeds. Its
+  archetype's enablers stay in the offer pool, as in a real run.
 - **Metrics:**
   - **Trigger rate:** the share of the side's declared deals on which the
     sigil scores, by deal.
@@ -997,6 +1115,8 @@ chance that you win because of it.
   - **Decisive wins:** the share of the side's wins that rescoring without the
     sigil turns into a loss or draw.
   - **Win-rate lift:** forced-pick win rate minus control win rate.
+  - **Enabler lift:** for an enabler, how much it raises the trigger rates and
+    win rate of its archetype's payoffs.
 - **Thresholds** are tuning levers set once the harness runs. Placeholder
   starting points: a trigger rate of at least a third of declared deals from
   deal 4 on, decisive in at least 5% of wins, a lift of at least zero, and a
@@ -1037,6 +1157,9 @@ Known biases of the lightweight harness:
   multipliers.
 - **No hidden information.** Play-dependent sigils trigger more often than
   they would for a human. Hold sigils are unaffected.
+- **Rule-changing enablers break off-the-shelf solvers.** DDS can't model
+  "trump even when you could follow suit" or "aces can't be trumped", so these
+  need the harness's own search or wait for stage 3.
 
 Numbers from the lightweight harness are therefore upper bounds for play- and
 auction-dependent sigils, and its thresholds are set higher than the
@@ -1044,12 +1167,11 @@ full-game ones.
 
 ### Utility sigils
 
-Where proof is prohibitively hard, utility sigils may be judged heuristically.
-Convert the effect into gold or offers (a free reroll is worth 50 gold),
-compare that to the price, and check in the harness that runs holding it do
-not lose more often than runs without it. Rule benders that change what scores,
-such as "your kings count as aces for your sigils", are point sigils for this
-purpose and need the full bar.
+Enablers are not judged heuristically: each needs a measurable enabler lift.
+Where proof is prohibitively hard, economy and general utility sigils may be
+judged heuristically. Convert the effect into gold or offers (a free reroll is
+worth 50 gold), compare that to the price, and check in the harness that runs
+holding it do not lose more often than runs without it.
 
 ### Results
 
@@ -1095,6 +1217,7 @@ to one-offs ([Appendix C](#appendix-c-one-offs-not-archetypes)).
 | 31 | Sigil slots by mode | 7 for a human with an AI partner, 5 per shopping player otherwise; multiplayer scores run higher |
 | 32 | Sigil validation | Every point sigil needs simulation evidence that it can be built around, triggered, and won with; utility may be judged heuristically |
 | 33 | Validation harness | A lightweight double-dummy harness during sigil design; the full game's AI re-validates later |
+| 34 | Enablers | Every archetype has enabler sigils, three or more per major; 25 of the 55 utility sigils |
 
 ## Appendix B: Calls made without a dedicated question
 
