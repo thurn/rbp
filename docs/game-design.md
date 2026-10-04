@@ -28,7 +28,7 @@ carries over.
 | Engravings | Seven types, applied immediately to an owned card, one per card |
 | Cards | Bought cards are dealt to their owner every deal; owned cards are private |
 | Shop | 2 sigils, 2 engravings, 2 cards; unlimited purchases; Balatro-style random offers |
-| Archetypes | Five strains (♣ ♦ ♥ ♠ NT) and four minors (Aces, Doubles, Exact, Fit) |
+| Archetypes | Majors: five strains built from shared sigil cycles, plus Trumps, Long Suits, Slams, and Ranks; minors: Spot Cards, Voids, Rainbow, Timing |
 | Prototype | Single-player: you sit South with a non-shopping AI partner against two shopping AI opponents |
 
 ## Design pillars
@@ -39,9 +39,11 @@ carries over.
    added up to no game plan. Here most sigils say "you get points for doing X"
    in one of four categories, Balatro-style, and builds come from stacking
    them.
-3. **Each strain plays differently.** Every strain archetype aims to bid slam
-   in its strain every time, but each one gets there through a different bridge
-   technique, the way a Flush build in Balatro plays differently from High Card.
+3. **Every plan works in every strain.** Cycles of identical sigils make the
+   beginner plan, collecting one suit or its top honors and bidding it, equally
+   viable in all five strains. Each strain adds one signature sigil and its own
+   bridge texture, and cross-strain archetypes such as Trumps and Ranks give
+   builds a second axis, the way Balatro jokers mix hand types with card ranks.
 4. **Symmetric seats.** Human and AI seats follow identical rules, so one
    design serves single-player and multiplayer. The one exception is an AI
    partner of a human, which never shops; its human partner gets double gold
@@ -230,8 +232,8 @@ defense score = ( undertrick penalty × (1 + declaring side's contract multiplie
   strong ones.
 - The slam decision stays near bridge's usual 50–55% threshold, because the safe
   game is multiplied by the same amount.
-- Defense bonuses and multipliers come only from dedicated defense sigils
-  ([Doubles](#doubles)).
+- Defense bonuses and multipliers come only from a few one-off defense sigils
+  ([Appendix C](#appendix-c-one-offs-not-archetypes)).
 
 ### Worked examples
 
@@ -413,7 +415,8 @@ an opponent your engraved ace for a deal.
   reroll in the same shop. The cost resets at the next shop.
 - Offers are random within their rarity, as in Balatro. Builds come together by
   pivoting toward what appears and by using rerolls, card purchases, and suit
-  conversions. Strain-agnostic point sigils carry builds through the gaps.
+  conversions. Cross-strain archetypes and generic point sigils carry builds
+  through the gaps.
 - Sigils and cards can be sold at any shop for half price.
 
 ### Gold
@@ -425,7 +428,7 @@ an opponent your engraved ace for a deal.
 - Gold from sigils and engravings arrives when its trigger happens.
 - A typical round earns about 195 gold, or about 1,450 spendable over the run.
   Score leads do not turn into gold leads; earning more is the job of economy
-  sigils, Gold engravings, and the [Diamonds](#-diamonds-treasury) archetype.
+  sigils and Gold engravings.
 
 ### AI partners do not shop
 
@@ -448,237 +451,278 @@ is you, and North never shops.
 
 ## 9. Archetypes
 
-There are five strain archetypes and four minor archetypes. Strain archetypes
-score only in their strain's contracts. Minor archetypes cut across strains and
-combine with a strain build or stand alone. Strain-agnostic generic sigils
-support every build.
+An archetype is a plan you can build a run around. Archetypes come in two
+weights:
 
-| Archetype | Plan in one line | Main scoring |
-| --- | --- | --- |
-| ♣ The Long Suit | Win with club length, not honors | Per-trick bonuses scaling with length |
-| ♦ Treasury | Get rich and turn the bank into points | Flat bonuses scaling with gold held |
-| ♥ The Run | Win an unbroken string of tricks | Per-trick bonuses and a trick multiplier that climb |
-| ♠ Trump Power | Make voids and crossruff | Bonuses on ruffs and voids |
-| NT Honors | Own aces and kings in every suit | Flat bonuses per HCP, multipliers per ace |
-| Aces | Collect aces and win with them | Trick multiplier on ace tricks |
-| Doubles | Profit from the opponents' greed | Penalty bonuses and multipliers on defense |
-| Exact | Take exactly the contract | Multipliers for no overtricks |
-| Fit | Share a strain with your partner | Multipliers per trump between both hands |
+- **Major archetypes** have sigils at every rarity and can carry a run alone.
+  The five strains are majors, and so are four cross-strain archetypes:
+  Trumps, Long Suits, Slams, and Ranks.
+- **Minor archetypes** have about four sigils each and usually join a major:
+  Spot Cards, Voids, Rainbow, and Timing.
+
+Only strain sigils care which strain you declare. Every other archetype scores
+in any strain where its plan works, so a hearts build that pivots to spades
+keeps its Trumps and Ranks sigils. Generic point sigils support every build,
+and ideas too narrow for an archetype become one-off sigils
+([Appendix C](#appendix-c-one-offs-not-archetypes)).
+
+| Archetype | Weight | Plan in one line | Strain lean |
+| --- | --- | --- | --- |
+| Strains | Major ×5 | Collect one suit, or its top honors, and bid it | — |
+| Trumps | Major | Hold many trumps, then draw them or ruff with them | ♠ |
+| Long Suits | Major | Own one very long suit and run it | ♣ |
+| Slams | Major | Bid six or seven whenever it is close | Any |
+| Ranks | Major | Collect one rank, usually aces, and win with it | ♦ |
+| Spot Cards | Minor | Win tricks with 2s through 9s | ♣ |
+| Voids | Minor | Start with a void or make one fast | ♠ |
+| Rainbow | Minor | Win tricks with all four suits | NT |
+| Timing | Minor | Win tricks in a row, early, or late | ♥ |
 
 Example sigils are tagged by rarity (C, U, R, L) and category. Names and exact
 numbers are placeholders for the sigil-writing pass.
 
-### ♣ Clubs: The Long Suit
+### Ways to score: bid, hold, lead, win
 
-**Plan.** Load the hand with clubs, mostly cheap spot cards. Bid clubs to slam
-on length, draw trumps, and let small clubs take the last tricks after the
-opponents run out.
+Each archetype rewards one idea through several triggers, so its sigils stack
+instead of competing. Hold sigils pay for what you bought; Lead and Win sigils
+pay for how you play it.
 
-- **Buys:** club spot cards at 15 gold each. This build owns more cards than
-  any other and often more than 13.
-- **Engraves:** Convert ♣ on cheap off-suit spot cards; Raise on club spot cards.
-- **Bids:** 1♣ openings and 3♣ preempts early; jumps to 5♣ and 6♣ on length.
-- **Plays:** draw trumps, run the clubs, and count the opponents' clubs so the 9
-  and 8 become winners.
-- **Threat:** clubs is the lowest suit, so any other strain outbids it at the
-  same level, and game needs 11 tricks. Preempt high and use length to make
-  five, six, and seven.
-- **Pairs with:** Fit, Exact.
+| Trigger | What it checks | Example |
+| --- | --- | --- |
+| Bid | The final contract's strain or level | Your slams have +2× contract multiplier. |
+| Hold | Declarer's and dummy's hands as dealt | Your contracts are worth +40 for each ace your side holds. |
+| Lead | Cards your side leads to tricks | Tricks you lead an ace to have +2× trick multiplier. |
+| Win | The card that wins a trick for your side | Tricks you win with an ace are worth +20. |
+| Ruff | Winning a trick by trumping a side suit | Tricks you win by trumping have +2× trick multiplier. |
 
-Examples:
+- Hold sigils count both of your side's hands, because in single-player your
+  hand may be dummy ([§3](#who-plays-declarer)).
+- Per-trick bonuses and trick multipliers reach only tricks your side wins, so
+  a per-trick Lead sigil needs the lead to hold. A flat Lead sigil pays either
+  way.
 
-- [C, Per-trick] Tricks in your clubs contracts are worth +5 for each club in
-  declarer's hand.
-- [C, Flat] Your clubs contracts are worth +100 if declarer holds seven or more
-  clubs.
-- [C, Trick ×] Tricks you win with a club ranked 9 or lower have +2× trick
+### Cycles
+
+A **cycle** is a set of sigils that are identical apart from one symbol: a
+suit, a strain, or a rank. Learn one member and you know them all, and the
+beginner plan works the same way in every strain. Cycles sit mostly at common,
+so they show up often.
+
+| Cycle | Rarity, category | Members | Text, shown for ♥ or kings |
+| --- | --- | --- | --- |
+| Strain bonus | C, Flat | ♣ ♦ ♥ ♠ NT | Your ♥ contracts are worth +100. |
+| Strain tricks | C, Per-trick | ♣ ♦ ♥ ♠ NT | Tricks in your ♥ contracts are worth +10. |
+| Suit holding | C, Flat | ♣ ♦ ♥ ♠ | Your contracts are worth +10 for each ♥ your side holds. |
+| Suit wins | C, Per-trick | ♣ ♦ ♥ ♠ | Tricks you win with a ♥ are worth +10. |
+| Rank wins | C, Per-trick | A K Q J | Tricks you win with a king are worth +20. |
+| Strain multiplier | U, Contract × | ♣ ♦ ♥ ♠ NT | Your ♥ contracts have +2× contract multiplier. |
+| Top honors | U, Contract × | ♣ ♦ ♥ ♠ | +1× contract multiplier if your side holds the A, K, and Q of ♥. |
+| Strain slam | R, Contract × | ♣ ♦ ♥ ♠ NT | Your ♥ slams have +3× contract multiplier. |
+
+- Cycles stay identical where bridge does not: minor-suit tricks are worth 20
+  and minor-suit game takes 11 tricks. This is accepted for readability, and
+  the gap shrinks as sigil bonuses outgrow base values
+  ([§14](#14-risks-and-tuning-levers)).
+- NT has no suit, so it has fewer cycle members. Its signature, Ranks, and
+  Rainbow fill the gap.
+- Suit holding and Suit wins score in any contract, so collecting hearts still
+  pays when the auction lands in NT.
+- Rank wins pay the same for every rank. Jacks cost a third of an ace but win
+  far less often.
+
+### Strains
+
+**Plan.** Pick a suit or NT. Buy its cards, Convert other cards into it, take
+its cycle sigils, and bid it every deal you can, up to slam. Collecting only
+the A, K, and Q of a suit is the same plan with three cards instead of ten.
+
+That plan is identical in every strain. Strains feel different through bridge
+itself and through one **signature** uncommon each, which leans toward a
+cross-strain archetype:
+
+| Strain | Signature (U) | Feel |
+| --- | --- | --- |
+| ♣ | In your clubs contracts, tricks you win with a club ranked 9 or lower have +1× trick multiplier. | Cheapest to build with 15-gold spot cards. Outbid by every strain, so preempt high and run long clubs. Leans Long Suits and Spot Cards. |
+| ♦ | Your diamonds contracts have +1× contract multiplier for each ace your side holds beyond two. | Side-suit aces stop the opening leads that beat 5♦ and 6♦. Leans Ranks. |
+| ♥ | In your hearts contracts, each trick your side wins in a row has +1× trick multiplier more than the one before. | Lose your losers early, draw trumps, then win everything. Leans Timing. |
+| ♠ | Your spades contracts have +1× contract multiplier for each void in declarer's or dummy's hand, up to +3×. | Outbids every strain at its level. Convert short suits into spades and crossruff. Leans Trumps and Voids. |
+| NT | Your NT contracts have +2× contract multiplier if your side wins tricks with all four suits. | Game in nine tricks, but every suit needs a stopper. Trumps sigils score nothing here. Leans Rainbow and Ranks. |
+
+- **Buys:** the strain's suit, or aces and kings in every suit for NT.
+- **Engraves:** Convert into the suit; Raise toward its top honors; Wild for an
+  NT stopper.
+- **Bids:** the strain at every chance, preempting early in clubs and spades.
+- **Threat:** opponents read your strain sigils and outbid or sacrifice. A
+  cross-strain archetype keeps scoring when you can't declare your strain.
+- **Pairs with:** any cross-strain archetype, most naturally its lean.
+
+### Trumps
+
+**Plan.** Own the trumps in whatever suit you declare. Trumps pays two ways:
+drawing trumps by leading them, and ruffing side-suit losers. Most hands suit
+one line or the other, so a Trumps build leans one way.
+
+| Trigger | Example |
+| --- | --- |
+| Hold | [C, Flat] Your suit contracts are worth +15 for each trump your side holds. |
+| Lead | [C, Per-trick] Tricks you lead a trump to are worth +15. |
+| Ruff | [C, Trick ×] Tricks you win by trumping have +2× trick multiplier. |
+| Hold | [U, Flat] Your suit contracts are worth +50 for each trump your side holds beyond eight. |
+| Win | [U, Contract ×] +2× contract multiplier if your side wins five or more tricks with trumps. |
+| Ruff | [R, Contract ×] +1× contract multiplier for each trick you win by trumping, up to +4×. |
+
+- **Buys:** cards of one suit, and high trumps for overruffs.
+- **Bids:** your long suit as trumps, never NT.
+- **Threat:** opponents lead trumps to cut down ruffs, or overruff. Raised top
+  trumps answer both.
+- **Pairs with:** Voids, Long Suits, Spot Cards, ♠.
+
+### Long Suits
+
+**Plan.** Own one very long suit, draw out the opponents' cards in it, and win
+the remaining tricks with small cards. Your **longest suit** is the suit in
+which declarer and dummy together hold the most cards as dealt, and ties count
+every tied suit. It can be trumps or, in NT, a side suit you run.
+
+| Trigger | Example |
+| --- | --- |
+| Hold | [C, Flat] Your contracts are worth +100 if declarer or dummy holds seven or more cards in one suit. |
+| Lead | [C, Per-trick] Tricks you lead from your longest suit are worth +10. |
+| Win | [C, Per-trick] Tricks you win with a card of your longest suit are worth +10. |
+| Win | [U, Per-trick] Each trick you win with your longest suit is worth +5 more than the one before. |
+| Win | [U, Contract ×] +1× contract multiplier if your side wins eight or more tricks with cards of one suit. |
+| Hold | [R, Contract ×] +1× contract multiplier for each card beyond six that declarer or dummy holds in one suit. |
+
+- **Buys:** cheap spot cards of one suit. This build often owns more than 13
+  cards.
+- **Engraves:** Convert into the suit; Raise on its spot cards.
+- **Bids:** preempts and jumps on length; 3NT on a long running minor.
+- **Plays:** count the opponents' cards so the 9 and 8 become winners.
+- **Threat:** a bad split or a missing entry strands the suit.
+- **Pairs with:** Trumps, Spot Cards, ♣, NT.
+
+### Slams
+
+**Plan.** Bid six or seven whenever it is close. Slams pays for bidding slams
+as well as making them, so its risk lives in the auction.
+
+| Trigger | Example |
+| --- | --- |
+| Bid | [C, Utility] Gain 40 gold whenever your side bids a slam. |
+| Make | [C, Flat] Your slams are worth +300. |
+| Make | [C, Per-trick] Tricks in your slams are worth +20. |
+| Bid | [U, Contract ×] Your slams have +2× contract multiplier. |
+| Make | [U, Flat] Your grand slams are worth +1,000. |
+| Bid | [R, Contract ×] +1× contract multiplier for each slam your side has bid this run, made or not. |
+
+- **Buys:** aces and kings for control, in any strain.
+- **Bids:** "Aces? (4NT)", "Aces? (4♣)", "Kings? (5NT)", and jumps.
+- **Threat:** a failed slam pays the opponents your whole contract multiplier
+  ([§4](#failed-contracts)), and opponents sacrifice against slams they can't
+  beat.
+- **Pairs with:** the Strain slam cycle, Ranks, Timing.
+
+### Ranks
+
+**Plan.** Collect one rank and win tricks with it. The Rank wins cycle covers
+aces, kings, queens, and jacks; the deeper sigils are about aces, which win in
+every strain and cost the most.
+
+| Trigger | Example |
+| --- | --- |
+| Win | [C, Per-trick] Tricks you win with an ace are worth +20 (Rank wins cycle). |
+| Hold | [C, Flat] Your contracts are worth +40 for each ace your side holds. |
+| Lead | [U, Trick ×] Tricks you lead an ace to have +2× trick multiplier. |
+| Hold | [U, Contract ×] +1× contract multiplier if your side holds four or more aces. |
+| Hold | [U, Utility] Your kings count as aces for your sigils. |
+| Win | [R, Contract ×] +1× contract multiplier for each trick you win with an ace beyond two. |
+
+- **Buys:** aces, and kings to Raise. Raised kings make five or more aces
+  possible.
+- **Engraves:** Raise on kings; Wild on an ace, which can be led as the ace of
+  any suit.
+- **Plays:** cash aces before the opponents can trump them. NT keeps them safe.
+- **Threat:** aces cost 100 gold each, and they get trumped once a suit runs
+  out.
+- **Pairs with:** Slams, Timing, ♦, NT.
+
+### Spot Cards
+
+**Plan.** Win tricks with 2s through 9s, the cheapest cards in the shop. Spot
+cards win through length, by trumping, and after the honors are gone. Raise
+cuts both ways: a raised 9 is a 10.
+
+- [C, Trick ×] Win: tricks you win with a card ranked 9 or lower have +2× trick
   multiplier.
-- [U, Contract ×] Your clubs contracts have +2× contract multiplier.
-- [R, Contract ×] Your clubs contracts have +1× contract multiplier for each club
-  beyond six in declarer's hand.
+- [C, Flat] Hold: your contracts are worth +100 if your side holds 20 or fewer
+  HCP.
+- [U, Contract ×] Win: +1× contract multiplier if your side wins four or more
+  tricks with cards ranked 9 or lower.
+- [R, Per-trick] Win: tricks you win with a 2 are worth +200.
 
-### ♦ Diamonds: Treasury
+**Pairs with:** Long Suits, Trumps, ♣.
 
-**Plan.** Diamonds earn gold, and diamond contracts score from the gold you
-hold. Every purchase lowers your score, so the build is about when to stop
-spending and start banking.
+### Voids
 
-- **Buys:** diamonds and economy sigils early.
-- **Engraves:** Gold on cards played every deal; Convert ♦.
-- **Bids:** like any minor, toward 5♦ and 6♦.
-- **Plays:** ordinary diamond play. Gold engravings pay on defense too.
-- **Threat:** building lowers the bank, and diamonds is outbid by the majors. Buy
-  early, bank late, and raise the interest cap.
-- **Pairs with:** anything, because gold helps every build; Doubles.
+**Plan.** Start with a void, or make one fast, then ruff or discard. Convert
+engravings create voids, and wild cards never break one
+([§3](#wild-cards)). Voids sigils score in NT, but a void there is a
+liability.
 
-Examples:
+- [C, Flat] Hold: your contracts are worth +75 for each void in declarer's or
+  dummy's hand as dealt.
+- [C, Contract ×] Early: +1× contract multiplier if declarer or dummy becomes
+  void in a suit by the end of trick 3.
+- [U, Contract ×] Hold: +2× contract multiplier if declarer or dummy is dealt a
+  void.
+- [R, Contract ×] Early: +1× contract multiplier for each void declarer and
+  dummy have after trick 4, up to +3×.
 
-- [C, Utility] When you play a diamond, gain 10 gold.
-- [C, Flat] Your diamonds contracts are worth +1 for every 2 gold you hold.
-- [C, Per-trick] Tricks in your diamonds contracts are worth +10, or +20 while
-  you hold 200 or more gold.
-- [U, Contract ×] Your diamonds contracts have +2× contract multiplier.
-- [R, Contract ×] Your diamonds contracts have +1× contract multiplier for every
-  150 gold you hold.
+**Pairs with:** Trumps, ♠.
 
-### ♥ Hearts: The Run
+### Rainbow
 
-**Plan.** Hearts payoffs climb with each consecutive trick your side wins, so
-every hand is a sequencing puzzle: lose your losers early, draw trumps, then
-win everything to the end.
+**Plan.** Win tricks with cards of all four suits. NT does this naturally; in a
+suit contract it means cashing side-suit winners as well as trumps. A trick
+won with a wild card counts as every suit ([§3](#wild-cards)), so one wild
+completes the rainbow and Wild is the build's key engraving.
 
-- **Buys:** top hearts for trump control and side-suit aces for entries.
-- **Engraves:** Raise on hearts and side kings; While held on a card saved for
-  late.
-- **Bids:** Jacoby transfers, Jacoby 2NT, and limit raises; from 4♥ to 6♥ through
-  "Aces? (4NT)".
-- **Plays:** duck early, then run, and never lose the lead once the run starts.
-  This is the opposite technique to spades' crossruff.
-- **Threat:** one lost trick resets the climb. Hold aces in every side suit.
-- **Pairs with:** Aces, Fit.
+- [C, Contract ×] Win: +1× contract multiplier if your side wins tricks with
+  cards of all four suits.
+- [C, Per-trick] Win: the first trick you win with each suit is worth +30.
+- [U, Contract ×] Hold: +1× contract multiplier if neither declarer nor dummy
+  is dealt a void.
+- [R, Trick ×] Lead: tricks you lead in a suit your side has not yet led this
+  deal have +2× trick multiplier.
 
-Examples:
+**Pairs with:** NT, Ranks. It pulls against Voids.
 
-- [C, Per-trick] In your hearts contracts, each trick your side wins is worth +10
-  for each trick it won in a row before it.
-- [C, Flat] Your hearts contracts are worth +150 if your side wins the last five
-  tricks.
-- [U, Trick ×] In your hearts contracts, each trick your side wins in a row has
-  +1× trick multiplier more than the one before.
-- [U, Contract ×] Your hearts contracts have +2× contract multiplier.
-- [R, Contract ×] Your hearts contracts have +3× contract multiplier if your side
-  wins every trick after the first one it loses.
+### Timing
 
-### ♠ Spades: Trump Power
+**Plan.** Win tricks in a row, early, or late. Each hand becomes a sequencing
+puzzle: take your losses at the right moment, then keep the lead. Early and
+late sigils pull opposite ways, since one wants winners cashed at once and the
+other wants losers given up first. The defenders lead to trick 1, so winning
+early means winning the opening lead.
 
-**Plan.** Convert short side suits into spades, which adds trumps and opens
-voids at once, then crossruff instead of drawing trumps.
+- [C, Per-trick] Sequence: each trick your side wins is worth +10 for each
+  trick it won in a row before it.
+- [C, Trick ×] Late: the last trick has +2× trick multiplier if your side wins
+  it.
+- [U, Flat] Early: your contracts are worth +150 if your side wins the first
+  four tricks.
+- [R, Contract ×] Late: +3× contract multiplier if your side wins every trick
+  after the first one it loses.
 
-- **Buys:** spades of any rank.
-- **Engraves:** Convert ♠ on short-suit cards; Raise on spades to win trump fights.
-- **Bids:** weak 2♠ and preempts early; from 4♠ to 6♠ on shape more than points.
-- **Plays:** crossruff, ruff losers in the short hand, and save high trumps for
-  overruffs.
-- **Threat:** opponents lead trumps to cut down ruffs, or overruff. Long trumps,
-  raised top spades, and voids in both hands answer them.
-- **Pairs with:** Fit, Doubles.
-
-Examples:
-
-- [C, Per-trick] Tricks you win by trumping in spades contracts are worth +20.
-- [C, Flat] Your spades contracts are worth +75 for each void in declarer's or
-  dummy's hand.
-- [C, Trick ×] Tricks you win by trumping in spades contracts have +2× trick
-  multiplier.
-- [U, Contract ×] Your spades contracts have +2× contract multiplier.
-- [R, Contract ×] Your spades contracts have +1× contract multiplier for each
-  trick your side wins by trumping, up to +4×.
-
-### NT: Honors
-
-**Plan.** Aces and kings in every suit make NT safe against any lead, and NT
-payoffs scale with your side's high-card points.
-
-- **Buys:** aces and kings in all four suits. This is the most expensive build.
-- **Engraves:** Raise to turn queens into kings and kings into aces; Wild for a
-  stopper in every suit.
-- **Bids:** 1NT and 2NT openings, Stayman and transfers, "Aces? (4♣)", and
-  "Slam invite (4NT)"; from 3NT to 6NT and 7NT.
-- **Plays:** count winners, cash honors, and establish a long suit with entries.
-- **Threat:** a suit with no stopper runs against you. Wild cards and aces in
-  every suit answer it.
-- **Pairs with:** Aces, Exact.
-
-Examples:
-
-- [C, Flat] Your NT contracts are worth +15 for each HCP in declarer's and
-  dummy's hands.
-- [C, Per-trick] Tricks you win with an honor in NT contracts are worth +15.
-- [U, Contract ×] Your NT contracts have +2× contract multiplier.
-- [U, Utility] Your queens count as kings for HCP.
-- [R, Contract ×] Your NT contracts have +1× contract multiplier for each suit
-  in which your side holds the ace.
-
-### Aces
-
-**Plan.** Collect aces, both natural ones and raised kings, and win tricks with
-them. This works in every strain and is strongest in NT, where aces can't be
-trumped.
-
-- **Buys:** aces, and kings to raise.
-- **Bids:** "Aces? (4NT)" and "Aces? (4♣)" to reach slam.
-- **Plays:** cash aces before the opponents can trump them.
-
-Examples:
-
-- [C, Trick ×] Tricks you win with an ace have +2× trick multiplier.
-- [C, Flat] Your contracts are worth +40 for each ace in declarer's and dummy's
-  hands.
-- [U, Contract ×] +1× contract multiplier if your side holds four or more aces.
-- [U, Utility] Your kings count as aces for your sigils.
-- [R, Contract ×] +1× contract multiplier for each ace your side holds beyond
-  three.
-
-### Doubles
-
-**Plan.** Penalty-double overreaching contracts and sacrifices. The opponents'
-own multipliers raise the penalty ([§4](#failed-contracts)), and Doubles
-sigils raise it again. This is the only archetype that scores on defense, with a
-smaller offensive line in redoubled contracts.
-
-- **Bids:** penalty doubles; competing to push opponents a level higher;
-  redoubling with a sure contract.
-- **Category note:** its per-trick and multiplier sigils are the defense versions,
-  a per-undertrick bonus and a penalty multiplier.
-
-Examples:
-
-- [C, Per-trick] +50 for each undertrick you collect.
-- [C, Contract ×] Penalties you collect from contracts you doubled have +1×
-  multiplier.
-- [U, Contract ×] If your side redoubles and makes the contract, +2× contract
-  multiplier.
-- [U, Utility] Each undertrick you collect pays you 10 gold.
-- [R, Contract ×] Penalties you collect from contracts you doubled have +3×
-  multiplier.
-
-### Exact
-
-**Plan.** Take exactly the contract, no more and no less. Exact rewards accurate
-bidding and gives declarer a reason to give up an overtrick at the end.
-
-Examples:
-
-- [C, Flat] Your contracts are worth +150 if you make exactly your contract.
-- [C, Contract ×] +1× contract multiplier if you make exactly your contract.
-- [U, Contract ×] +2× contract multiplier if you make exactly a game or slam.
-- [R, Contract ×] +1× contract multiplier for each exact contract your side has
-  made this run.
-
-### Fit
-
-**Plan.** Fit payoffs scale with the trumps your side holds between both hands
-and with tricks won by dummy, so both partners pile into one suit. In
-single-player North owns nothing, so you build the fit alone: own a long trump
-suit and rely on North's random share for the rest.
-
-Examples:
-
-- [C, Per-trick] Tricks won with dummy's cards are worth +20.
-- [C, Contract ×] +1× contract multiplier if your side holds ten or more trumps.
-- [U, Contract ×] +1× contract multiplier for each trump your side holds beyond
-  eight.
-- [R, Contract ×] +1× contract multiplier for each trump in dummy beyond three.
+**Pairs with:** ♥, Slams, Ranks.
 
 ### Generic
 
-Strain-agnostic point sigils fit any build and carry runs while a strain comes
-together.
+Generic point sigils fit any build and carry runs while a plan comes together.
 
 - [C, Per-trick] Tricks in your contracts are worth +5.
-- [C, Per-trick] Tricks in your slams are worth +20.
+- [C, Flat] Your contracts are worth +50.
 - [U, Contract ×] Your vulnerable contracts have +1× contract multiplier.
-- [R, Flat] Your grand slams are worth +1,000.
 - [L, Contract ×] Double your side's contract multiplier.
 - [L, Utility] +1 sigil slot.
 - [L, Utility] Your side's book is five tricks.
@@ -692,50 +736,50 @@ Utility examples:
   dealt to you; cards cost you 5 less; one of your cards may hold a second
   engraving; your shops offer a third card.
 - **Rule benders:** hearts and diamonds count as one suit for your sigils; your
-  10s count as honors; penalties against your side are halved.
+  10s count as spot cards; penalties against your side are halved.
 
 ## 10. Sigil pool skeleton
 
 The first pool has 145 sigils. About 70% of commons, 50% of uncommons, 75% of
-rares, and 60% of legendaries score points. Commons are mostly simple build-around
-scoring, uncommons are the main home of utility and of contract multipliers,
-rares return to exciting scoring, and legendaries are the splashiest effects.
-Within trick-level scoring, per-trick points dominate and trick multipliers are
-rare signature effects.
+rares, and 60% of legendaries score points. Commons are mostly simple
+build-around scoring, including most cycles; uncommons are the main home of
+utility and of contract multipliers; rares return to exciting scoring; and
+legendaries are the splashiest effects. Within trick-level scoring, per-trick
+points dominate and trick multipliers are rare signature effects.
 
 ### By rarity and category
 
 | Rarity | Flat | Per-trick | Trick × | Contract × | Utility | Total |
 | --- | --- | --- | --- | --- | --- | --- |
-| Common | 12 | 24 | 3 | 3 | 18 | 60 |
-| Uncommon | 6 | 4 | 2 | 18 | 30 | 60 |
-| Rare | 3 | 1 | 1 | 10 | 5 | 20 |
+| Common | 16 | 21 | 3 | 2 | 18 | 60 |
+| Uncommon | 4 | 3 | 3 | 20 | 30 | 60 |
+| Rare | 1 | 2 | 1 | 11 | 5 | 20 |
 | Legendary | — | — | — | 3 | 2 | 5 |
-| **Total** | **21** | **29** | **6** | **34** | **55** | **145** |
+| **Total** | **21** | **26** | **7** | **36** | **55** | **145** |
 
-The six trick multipliers are Clubs' low clubs (C), Spades' ruffs (C), Aces'
-ace tricks (C), Hearts' climbing run (U), Aces (U), and one generic rare.
+The seven trick multipliers are Trumps' ruffs (C), Spot Cards' low wins (C),
+Timing's last trick (C), the clubs and hearts signatures (U), Ranks' ace leads
+(U), and Rainbow's new-suit leads (R).
 
 ### Point sigils by archetype
 
-Each cell gives flat / per-trick / trick × / contract ×.
-
 | Archetype | Common | Uncommon | Rare | Total |
 | --- | --- | --- | --- | --- |
-| ♣ The Long Suit | 2 / 3 / 1 / 0 | 1 / 0 / 0 / 2 | 0 / 0 / 0 / 1 | 10 |
-| ♦ Treasury | 2 / 3 / 0 / 0 | 1 / 0 / 0 / 2 | 0 / 0 / 0 / 1 | 9 |
-| ♥ The Run | 2 / 3 / 0 / 0 | 1 / 0 / 1 / 2 | 0 / 0 / 0 / 1 | 10 |
-| ♠ Trump Power | 2 / 3 / 1 / 0 | 1 / 0 / 0 / 2 | 0 / 0 / 0 / 1 | 10 |
-| NT Honors | 2 / 3 / 0 / 0 | 1 / 0 / 0 / 2 | 0 / 0 / 0 / 1 | 9 |
-| Aces | 1 / 1 / 1 / 0 | 0 / 0 / 1 / 1 | 0 / 0 / 0 / 1 | 6 |
-| Doubles | 0 / 2 / 0 / 1 | 0 / 0 / 0 / 2 | 0 / 0 / 0 / 1 | 6 |
-| Exact | 1 / 0 / 0 / 1 | 0 / 0 / 0 / 2 | 0 / 0 / 0 / 1 | 5 |
-| Fit | 0 / 1 / 0 / 1 | 0 / 0 / 0 / 2 | 0 / 0 / 0 / 1 | 5 |
-| Generic | 0 / 5 / 0 / 0 | 1 / 4 / 0 / 1 | 3 / 1 / 1 / 1 | 17 |
+| Strain cycles | 18 | 9 | 5 | 32 |
+| Strain signatures | — | 5 | — | 5 |
+| Trumps | 3 | 2 | 1 | 6 |
+| Long Suits | 3 | 2 | 1 | 6 |
+| Slams | 2 | 2 | 1 | 5 |
+| Ranks | 5 | 2 | 1 | 8 |
+| Spot Cards | 2 | 1 | 1 | 4 |
+| Voids | 2 | 1 | 1 | 4 |
+| Rainbow | 2 | 1 | 1 | 4 |
+| Timing | 2 | 1 | 1 | 4 |
+| Generic and one-offs | 3 | 4 | 2 | 9 |
 | **Total** | **42** | **30** | **15** | **87, plus 3 legendary = 90** |
 
-Each strain's two uncommon multipliers are a plain "+2× in this strain" and one
-conditional on the strain's technique.
+Each suit therefore has eight point sigils of its own (four common, three
+uncommon, one rare) and NT has five.
 
 ### Utility by family
 
@@ -746,9 +790,9 @@ conditional on the strain's technique.
 | Rule benders | 4 | 10 | 2 | 2 | 18 |
 | **Total** | **18** | **30** | **5** | **2** | **55** |
 
-About 14 utility sigils are aimed at an archetype, roughly two per strain and
-one per minor, such as Treasury's diamond gold or Aces' kings-as-aces. The rest
-are generic.
+About 13 utility sigils are aimed at an archetype, roughly one per strain and
+one per other archetype, such as Ranks' kings-as-aces or Slams' gold for
+bidding a slam. The rest are generic.
 
 ### Budgets
 
@@ -764,11 +808,12 @@ contract multiplier:
 
 Checks against par:
 
-- **Deal 4 (par 1,450):** a hearts partnership with two commons and an uncommon
-  makes 4♥ vul with 11 tricks: 5 × 40 + 500 + 150 = 850, × 3 = 2,550 in its
-  strain. Off-strain contracts and failures pull the average toward par.
+- **Deal 4 (par 1,450):** a hearts partnership with the hearts Strain bonus,
+  Strain tricks, and Strain multiplier makes 4♥ vul with 11 tricks:
+  5 × 40 + 500 + 100 = 800, × 3 = 2,400 in its strain. Off-strain contracts and
+  failures pull the average toward par.
 - **Deal 8 (par 8,000):** six point sigils (two strain commons, a generic common,
-  a strain +2×, a generic +1×, and a conditional strain +3×), plus engravings,
+  a Strain multiplier, a generic +1×, and a Strain slam), plus engravings,
   make 6♥ vul with 12 tricks: about 6 × 60 + 1,500 = 1,860, × 4 to × 7 =
   7,400–13,000.
 
@@ -776,12 +821,12 @@ Checks against par:
 
 With one reroll per shop, a player sees about 30 sigil offers per run: about 21
 commons, 7.5 uncommons, 1.5 rares, and one legendary every three or four runs.
-Each player therefore sees about 3 sigils aimed at any given strain per run.
-An opposing pair shares a strain, so it sees about 6, plus about 3 generic
-point sigils each. In single-player your double gold buys about three rerolls
-per shop, so you alone see about 60 offers and a similar count. That is enough
-for Balatro-style pivoting, but it is a risk to watch
-([§14](#14-risks-and-tuning-levers)).
+That is about 2 sigils aimed at a chosen suit per run, plus about 1.5 from each
+cross-strain major, which score in any strain. In single-player your double
+gold buys about three rerolls per shop, so you see about 60 offers and twice
+those counts. Cross-strain archetypes are what make this enough: a build that
+misses its strain's sigils still scores through Trumps, Ranks, or Long Suits.
+It is still a risk to watch ([§14](#14-risks-and-tuning-levers)).
 
 ## 11. Bidding UI and learning aids
 
@@ -853,8 +898,8 @@ seat would see. They never see another player's owned cards.
 
 - **Your partner never shops** ([§8](#ai-partners-do-not-shop)). It still bids
   and plays toward your build, which it reads from your public sigils.
-- **Each opposing pair settles on one strain** from its early offers and builds
-  it together.
+- **Each opposing pair settles on one strain** and one cross-strain archetype
+  from its early offers and builds them together.
 - Opposing AI seats buy, reroll, and sell under the same rules and prices as a
   human with a human partner.
 
@@ -879,11 +924,11 @@ apart from AI partners, multiplayer needs only these additions:
 | AI sacrifices against every big contract, so builds rarely play their slams | Penalty scaling, and the AI's sacrifice threshold |
 | Strain builds rarely come together with random offers | More strain commons, a third sigil offer, cheaper rerolls; affinity weighting held in reserve |
 | ×2 and ×4 doubling swings decide too many games | Doubling as +1× and +3× instead |
-| Fit is weak in single-player because North's hand is random | Fit counts the whole side's cards; let you assign bought cards to North |
-| Double gold inflates gold-scaling sigils, such as Treasury's "per 2 gold held" | Halve gold scaling for a doubled-economy seat, or raise Treasury thresholds |
+| Identical cycles leave minor strains behind, since their tricks score 20 and game needs 11 tricks | Stronger minor-strain signatures; a minor-only +5 per trick in the Strain tricks cycle |
+| Cycles crowd flavorful sigils out of the offers | Cycle sizes and common weights |
+| One wild card completes Rainbow | Wild counts as one named suit for Rainbow |
 | One buyer with 10 slots outbuilds two shopping opponents, or falls behind them | Income and slot count for the doubled-economy seat |
 | Convert is 4 of 10 engraving offer types, 40% of engraving offers | Offer weights |
-| Treasury's spend-or-bank tension is too weak or too harsh | Gold thresholds on Treasury sigils, interest cap |
 | Full SAYC bidding plus competent card play is the largest implementation cost | Start with SAYC core bidding and sampling-based play, then widen |
 
 ## Appendix A: Decision log
@@ -907,9 +952,9 @@ apart from AI partners, multiplayer needs only these additions:
 | 15 | Rarity odds | 69 / 25 / 5 / 1, legendaries in normal offers |
 | 16 | Engraving catalogue | Only the seven types in the brief |
 | 17 | Engraving specifics | The table in [§6](#6-engravings) |
-| 18 | Strain identities | Long Suit, Treasury, The Run, Trump Power, Honors |
-| 19 | Minor archetypes | Aces, Doubles, Exact, Fit |
-| 20 | Per-trick bonuses vs trick multipliers | Mostly per-trick bonuses; about six trick multipliers |
+| 18 | Strain identities | Revised: identical sigil cycles in every strain, plus one signature sigil leaning toward a cross-strain archetype |
+| 19 | Other archetypes | Revised: majors Trumps, Long Suits, Slams, Ranks; minors Spot Cards, Voids, Rainbow, Timing |
+| 20 | Per-trick bonuses vs trick multipliers | Mostly per-trick bonuses; about seven trick multipliers |
 | 21 | Utility families | Economy and shop, deal and card control, rule benders; no information |
 | 22 | Convention coverage | The full SAYC booklet, labeled by meaning |
 | 23 | Bidding suggestion | A subtle marker in the suggested call's hover card |
@@ -919,6 +964,7 @@ apart from AI partners, multiplayer needs only these additions:
 | 27 | GDD scope | Systems, skeleton, and examples; the full sigil list comes later |
 | 28 | Location | This file |
 | 29 | Single-player buying | You are your side's only buyer, with double gold, income, interest cap, and sigil slots; opponents still shop |
+| 30 | Rejected archetypes | Gold, doubles, exact contracts, fit, overtricks, and specialized technique are one-off sigils at most ([Appendix C](#appendix-c-one-offs-not-archetypes)) |
 
 ## Appendix B: Calls made without a dedicated question
 
@@ -935,3 +981,21 @@ apart from AI partners, multiplayer needs only these additions:
 - Each player's gold is public.
 - Your hand's HCP and suit lengths appear on hover rather than permanently on
   screen.
+
+## Appendix C: One-offs, not archetypes
+
+These ideas work as a single sigil that rewards one moment, but are too narrow,
+too swingy, or too hard to read to plan a run around. They get at most a few
+sigils each from the generic budget ([§10](#10-sigil-pool-skeleton)).
+
+- **Gold builds:** gold comes from economy utility and Gold engravings, and no
+  sigil scores from gold held.
+- **Doubles and defense:** a few sigils such as "+50 for each undertrick you
+  collect" keep defense from being dead time.
+- **Exact contracts:** making exactly the contract, no overtricks.
+- **Fit:** dummy's tricks and trumps split between hands. Trumps' Hold sigils
+  keep the useful part.
+- **Overtricks:** tricks beyond the contract.
+- **Specialized technique:** squeezes, sacrifices, finesses, ducking, and
+  singletons, which are hard for new players to spot and for sigil text to
+  define.
