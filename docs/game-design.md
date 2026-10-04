@@ -1080,7 +1080,9 @@ apart from AI partners, multiplayer needs only these additions:
 ## 15. Sigil validation
 
 Every sigil in this document is an example. No sigil enters the pool on design
-intuition alone: each needs empirical evidence from simulated runs.
+intuition alone: each needs empirical evidence from simulated runs. Validation
+has two layers: a bar each sigil must clear, and
+[fun metrics](#fun-metrics) the pool as a whole must meet.
 
 ### The bar
 
@@ -1173,6 +1175,30 @@ judged heuristically. Convert the effect into gold or offers (a free reroll is
 worth 50 gold), compare that to the price, and check in the harness that runs
 holding it do not lose more often than runs without it.
 
+### Fun metrics
+
+A sigil can clear the bar and still make runs miserable. The worst case is
+committing to a plan and then losing it to a sigil the opponents happened to
+draw. There is no hard rule against sigils that hurt the other side; instead,
+the harness tracks these goals across full runs and flags sigils and pairings
+that miss them. Thresholds are placeholders, like those above.
+
+- **No hard counters.** For each archetype, compare its win rate when the
+  opponents hold a given sigil against its win rate when they don't. A sigil
+  that cuts any archetype's win rate by more than a set margin, such as 15
+  points, is a hard counter. It is retuned unless it is kept on purpose as
+  counterplay that is visible and has an answer.
+- **Runs stay live.** Most runs enter deal 7 with the trailing side's deficit
+  smaller than the par of the remaining deals.
+- **Few blowouts.** Few runs end with one side scoring many times the other.
+- **Every archetype can win.** Each archetype's win rate, when committed to,
+  stays within a band: none dominant, none dead.
+- **Commitment pays.** Committing to an archetype by deal 3 wins at least as
+  often as staying flexible, and how well a committed run goes depends more on
+  its own offers and play than on what the opponents bought.
+- **Skill shows.** A stronger shopping or play policy beats a weaker one given
+  the same offers and deals by a clear margin.
+
 ### Results
 
 Each shipped sigil records its trigger rate, decisive-win share, and lift in
@@ -1218,6 +1244,7 @@ to one-offs ([Appendix C](#appendix-c-one-offs-not-archetypes)).
 | 32 | Sigil validation | Every point sigil needs simulation evidence that it can be built around, triggered, and won with; utility may be judged heuristically |
 | 33 | Validation harness | A lightweight double-dummy harness during sigil design; the full game's AI re-validates later |
 | 34 | Enablers | Every archetype has enabler sigils, three or more per major; 25 of the 55 utility sigils |
+| 35 | Sigils that hurt opponents | No hard rule; fun metrics in simulation flag hard counters, dead runs, and blowouts |
 
 ## Appendix B: Calls made without a dedicated question
 
