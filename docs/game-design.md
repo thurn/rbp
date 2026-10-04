@@ -981,9 +981,10 @@ chance that you win because of it.
 
 ### How it is measured
 
-- **Harness.** Headless full runs with AI in all four seats, using the same
-  bidding, play, and shopping AI as the game ([§12](#12-ai)). The shopping AI
-  needs a build-around policy for each archetype, which opposing pairs use too.
+- **Harness.** Headless full runs with AI in all four seats. It starts
+  lightweight and moves to the game's own AI later
+  ([staging](#staging-the-harness)). The shopping AI needs a build-around
+  policy for each archetype, which the game's opposing pairs reuse.
 - **Forced-pick trials.** A candidate is forced into one side's sigils at a
   fixed shop, such as before deal 1, 3, or 5, and that side builds around it.
   A control arm forces a plain baseline of the same rarity instead, such as
@@ -1003,6 +1004,43 @@ chance that you win because of it.
 
 Rescoring holds the auction and play fixed, so it misses how a sigil changes
 decisions. The forced-pick win-rate lift covers that.
+
+### Staging the harness
+
+Sigil design runs on a lightweight harness built before the full game, so
+archetypes are tested before the bidding UI and AI are built around them. The
+full game's AI re-validates the pool later.
+
+1. **Hand-level harness.** Fixed builds against random deals, using the shared
+   card and scoring core, dealing with owned cards ([§7](#dealing)), and an
+   existing double-dummy solver such as DDS for play. It measures trigger
+   rates for Hold, Bid, and Win sigils and cuts obvious duds.
+2. **Run-level harness.** Adds shops, greedy build-around policies per
+   archetype, and a simple contract chooser: the strain and level with the
+   best expected sigil-adjusted score from double-dummy results, plus a simple
+   competitive rule for the opponents. No SAYC. It measures buildability and
+   win-rate lift, and tests slot counts such as 7 against 10.
+3. **Full-game validation.** Once the game's bidding and play AI exist
+   ([§12](#12-ai)), the surviving pool is re-run and the thresholds are
+   recalibrated.
+
+Known biases of the lightweight harness:
+
+- **Double-dummy play is too strong.** It inflates make rates, so slam and
+  contract-multiplier sigils look better than they are.
+- **The solver maximizes tricks, not sigil score.** Timing, Lead, Ruff, and
+  Rainbow sigils depend on which card wins which trick. Among trick-equivalent
+  plays, the harness picks the one that scores most for the side's sigils.
+  This is still optimistic.
+- **No real auction.** Sacrifices, penalty doubles, and outbidding a visible
+  build are approximated at best, which matters most for Slams and Strain
+  multipliers.
+- **No hidden information.** Play-dependent sigils trigger more often than
+  they would for a human. Hold sigils are unaffected.
+
+Numbers from the lightweight harness are therefore upper bounds for play- and
+auction-dependent sigils, and its thresholds are set higher than the
+full-game ones.
 
 ### Utility sigils
 
@@ -1056,6 +1094,7 @@ to one-offs ([Appendix C](#appendix-c-one-offs-not-archetypes)).
 | 30 | Rejected archetypes | Gold, doubles, exact contracts, fit, overtricks, and specialized technique are one-off sigils at most ([Appendix C](#appendix-c-one-offs-not-archetypes)) |
 | 31 | Sigil slots by mode | 7 for a human with an AI partner, 5 per shopping player otherwise; multiplayer scores run higher |
 | 32 | Sigil validation | Every point sigil needs simulation evidence that it can be built around, triggered, and won with; utility may be judged heuristically |
+| 33 | Validation harness | A lightweight double-dummy harness during sigil design; the full game's AI re-validates later |
 
 ## Appendix B: Calls made without a dedicated question
 
